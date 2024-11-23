@@ -1,6 +1,9 @@
-<section class="py-4">
-  <h2 class="text-2xl font-bold mb-4" data-testid="app-user-list-title">
-    Users
-  </h2>
-  <p>User list</p>
-</section>
+<app-header title="Users">
+  <button mat-raised-button color="accent" routerLink="new">Add User</button>
+</app-header>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+  @for(user of users; track user.id) {
+  <app-user [user]="user"></app-user>
+  }
+</div>

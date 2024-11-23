@@ -1,0 +1,35 @@
+<mat-card class="!border !border-black !rounded-lg">
+  <mat-card-header class="mb-4">
+    <img
+      mat-card-avatar
+      [src]="user().avatar"
+      alt="User avatar"
+      data-testid="app-user-avatar"
+    />
+    <mat-card-title data-testid="app-user-name">{{
+      getUserName()
+    }}</mat-card-title>
+    <mat-card-subtitle data-testid="app-user-subtitle">{{
+      user().email
+    }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-actions align="end">
+    <button
+      mat-button
+      color="primary"
+      data-testid="app-user-edit-button"
+      (click)="editUser.emit(user().id)"
+    >
+      <fa-icon [icon]="icons.edit"></fa-icon>
+    </button>
+    <button
+      mat-button
+      color="warn"
+      data-testid="app-user-delete-button"
+      (click)="deleteUser.emit(user().id)"
+    >
+      <fa-icon [icon]="icons.delete"></fa-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

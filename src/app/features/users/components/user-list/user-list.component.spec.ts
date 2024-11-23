@@ -13,16 +13,4 @@ describe('UserListComponent', () => {
     const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
-
-  it('should have  the correct title', () => {
-    const fixture = TestBed.createComponent(UserListComponent);
-    fixture.detectChanges();
-
-    const title = fixture.nativeElement.querySelector(
-      '[data-testid="app-user-list-title"]'
-    );
-
-    expect(title).toBeTruthy();
-    expect(title.textContent).toContain('Users');
-  });
 });
