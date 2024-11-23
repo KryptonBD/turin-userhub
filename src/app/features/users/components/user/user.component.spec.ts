@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserComponent } from './user.component';
 
-const mockUser = {
+export const mockUser = {
   id: 1,
   first_name: 'John',
   last_name: 'Doe',
