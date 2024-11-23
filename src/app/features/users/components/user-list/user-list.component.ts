@@ -17,6 +17,7 @@ import { ErrorMessageComponent } from '@app/shared/components/error-message/erro
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationService } from '@app/core/services/notification.service';
 import { ConfirmDialogComponent } from '@app/shared/components/dialogs/confirm-dialog/confirm-dialog.component';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -28,6 +29,7 @@ import { ConfirmDialogComponent } from '@app/shared/components/dialogs/confirm-d
     MatPaginatorModule,
     LoadingSpinnerComponent,
     ErrorMessageComponent,
+    RouterLink,
   ],
 })
 export class UserListComponent {
@@ -35,6 +37,7 @@ export class UserListComponent {
   private dialog = inject(MatDialog);
   private notificationService = inject(NotificationService);
   private destroyRef = inject(DestroyRef);
+  private router = inject(Router);
 
   protected loading = signal(true);
   protected error = signal<string | null>(null);
@@ -114,4 +117,8 @@ export class UserListComponent {
         },
       });
   }
+
+  protected editUser = (user: User) => {
+    this.router.navigate(['/users', user.id]);
+  };
 }

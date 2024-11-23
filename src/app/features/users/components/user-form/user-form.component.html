@@ -1,0 +1,94 @@
+<app-header [title]="title()">
+  <button mat-raised-button [routerLink]="['']">
+    <fa-icon [icon]="icons.backIcon"></fa-icon>
+    Back to Users
+  </button>
+</app-header>
+
+<div class="p-4">
+  @if (loading()) {
+  <app-loading-spinner />
+  } @else {
+  <article class="max-w-2xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Avatar Section -->
+      <section class="flex flex-col items-center gap-4">
+        <div
+          class="w-40 h-40 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden"
+          (click)="fileInput.click()"
+        >
+          @if (avatarPreview()) {
+          <img
+            [src]="avatarPreview()"
+            alt="User Avatar"
+            class="w-full h-full object-cover"
+          />
+          } @else {
+          <div class="text-4xl text-gray-400">
+            <fa-icon [icon]="icons.user"></fa-icon>
+          </div>
+          }
+        </div>
+        <input
+          #fileInput
+          type="file"
+          accept="image/*"
+          class="hidden"
+          (change)="handleAvatarChange($event)"
+        />
+      </section>
+
+      <!-- Form Section -->
+      <form [formGroup]="userForm" (ngSubmit)="submit()" class="md:col-span-2">
+        <div class="grid grid-cols-1 gap-4">
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              formControlName="first_name"
+              placeholder="First Name"
+            />
+            @if (userForm.get('first_name')?.errors?.['required'] &&
+            userForm.get('first_name')?.touched) {
+            <mat-error>First name is required</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              formControlName="last_name"
+              placeholder="Last Name"
+            />
+            @if (userForm.get('last_name')?.errors?.['required'] &&
+            userForm.get('last_name')?.touched) {
+            <mat-error>Last name is required</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="email" placeholder="Email" />
+            @if (userForm.get('email')?.errors?.['required'] &&
+            userForm.get('email')?.touched) {
+            <mat-error>Email is required</mat-error>
+            } @if (userForm.get('email')?.errors?.['email'] &&
+            userForm.get('email')?.touched) {
+            <mat-error>Please enter a valid email</mat-error>
+            }
+          </mat-form-field>
+
+          <div class="flex justify-end gap-2">
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              [disabled]="userForm.invalid || loading()"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </article>
+  }
+</div>

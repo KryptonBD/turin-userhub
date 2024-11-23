@@ -46,9 +46,9 @@ export class UserService extends BaseApiService {
    * @param user - The user object
    * @returns observable of User
    */
-  createUser(user: Omit<User, 'id'>): Observable<User> {
+  createUser(userForm: FormData): Observable<User> {
     return this.http
-      .post<User>(this.API_URL, user)
+      .post<User>(this.API_URL, userForm)
       .pipe(catchError(this.handleError));
   }
 
@@ -57,9 +57,9 @@ export class UserService extends BaseApiService {
    * @param user - The user object
    * @returns observable of User
    * */
-  updateUser(user: User): Observable<User> {
+  updateUser(userId: number, formData: FormData): Observable<User> {
     return this.http
-      .put<User>(`${this.API_URL}/${user.id}`, user)
+      .put<User>(`${this.API_URL}/${userId}`, formData)
       .pipe(catchError(this.handleError));
   }
 

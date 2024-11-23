@@ -1,5 +1,7 @@
 <app-header title="Users">
-  <button mat-raised-button color="accent" routerLink="new">Add User</button>
+  <button mat-raised-button color="accent" [routerLink]="['create']">
+    Add User
+  </button>
 </app-header>
 
 <section class="p-4">
@@ -10,7 +12,11 @@
   } @else if (users().length){
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
     @for(user of users(); track user.id) {
-    <app-user [user]="user" (deleteUser)="deleteUser($event)"></app-user>
+    <app-user
+      [user]="user"
+      (deleteUser)="deleteUser($event)"
+      (editUser)="editUser(user)"
+    ></app-user>
     }
   </div>
   <mat-paginator

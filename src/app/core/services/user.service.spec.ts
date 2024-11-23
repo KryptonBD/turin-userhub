@@ -57,11 +57,10 @@ describe('UserService', () => {
   });
 
   it('should create a user', (done) => {
-    const newUser = {
-      first_name: 'Test',
-      last_name: 'Joe',
-      email: 'test@test.com',
-    };
+    const newUser = new FormData();
+    newUser.append('first_name', 'Test');
+    newUser.append('last_name', 'Joe');
+    newUser.append('email', 'test@test.com');
 
     service.createUser(newUser).subscribe((response) => {
       expect(response).toEqual({ ...newUser, id: 1 });
@@ -79,7 +78,12 @@ describe('UserService', () => {
       first_name: 'Updated',
     };
 
-    service.updateUser(updatedUser).subscribe((response) => {
+    const formData = new FormData();
+    formData.append('first_name', updatedUser.first_name);
+    formData.append('last_name', updatedUser.last_name);
+    formData.append('email', updatedUser.email);
+
+    service.updateUser(updatedUser.id, formData).subscribe((response) => {
       expect(response).toEqual(updatedUser);
       expect(response.first_name).toBe('Updated');
       done();

@@ -7,10 +7,12 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
   selector: 'app-error-message',
   imports: [FontAwesomeModule],
   template: `
-    <div class="flex items-center gap-2 p-4 bg-red-50 text-red-700 rounded-md">
-      <fa-icon [icon]="icon"></fa-icon>
-      <p class="m-0">{{ message() }}</p>
-    </div>
+    <article
+      class="flex items-center gap-2 p-4 bg-red-50 text-red-700 rounded-md"
+    >
+      <fa-icon [icon]="icon" aria-label="Error Icon"></fa-icon>
+      <p class="m-0" data-testid="app-error-message">{{ message() }}</p>
+    </article>
   `,
 })
 export class ErrorMessageComponent {
