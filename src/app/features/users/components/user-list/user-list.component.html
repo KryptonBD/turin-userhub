@@ -3,9 +3,14 @@
 </app-header>
 
 <section class="p-4">
+  @if (loading()) {
+  <app-loading-spinner />
+  } @else if (error()) {
+  <app-error-message [message]="error()!" />
+  } @else if (users().length){
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
     @for(user of users(); track user.id) {
-    <app-user [user]="user"></app-user>
+    <app-user [user]="user" (deleteUser)="deleteUser($event)"></app-user>
     }
   </div>
   <mat-paginator
@@ -14,4 +19,9 @@
     [pageSizeOptions]="[5, 10, 25]"
     (page)="pageChange($event)"
   />
+  } @else {
+  <div class="text-center py-8 text-gray-500">
+    <p>No users found</p>
+  </div>
+  }
 </section>
