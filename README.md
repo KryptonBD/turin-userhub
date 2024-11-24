@@ -1,27 +1,123 @@
-# TurinUserhub
+# Turin Userhub
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.9.
+An Angular application for managing users with features like listing, creating, editing, and deleting users. Built with Angular 18, Angular Material, and Tailwind CSS.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- User list with pagination
+- Create and edit users
+- Delete users with confirmation
+- Responsive material design
+- Mock authentication (Bearer token)
+- Toast notifications
+- Breadcrumb navigation
 
-## Code scaffolding
+## Prerequisites
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Before you begin, ensure you have met the following requirements:
 
-## Build
+- Node.js (v20.11.1 or higher)
+- Git
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Running unit tests
+1. Clone the repository
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+git clone
+cd turin-userhub
+```
 
-## Running end-to-end tests
+2. Install dependencies
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+npm install
+```
 
-## Further help
+## Development Server
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Run the development server:
+
+```bash
+ng serve
+```
+
+Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── core/                 # Core functionality
+│   │   ├── interceptors/     # HTTP interceptors
+│   │   ├── models/          # Interfaces
+│   │   └── services/        # API services
+│   ├── features/            # Feature modules
+│   │   └── users/          # User management feature
+│   │       ├── components/  # User-related components
+│   │       └── routes.ts    # User routing
+│   ├── shared/             # Shared components
+│   └── app.component.ts    # Root component
+└── styles/                # Global styles
+```
+
+## Key Technologies
+
+- Angular 18
+- Angular Material
+- Tailwind CSS
+- RxJS
+- TypeScript
+
+## API Integration
+
+The application uses a mock API with the following endpoints:
+
+- GET /users - List users
+- GET /users/:id - Get single user
+- POST /users - Create user
+- PUT /users/:id - Update user
+- DELETE /users/:id - Delete user
+
+All API requests include a mock Bearer token for authentication demonstration.
+
+## Available Scripts
+
+- `ng serve` - Start development server
+- `ng build` - Build the project
+- `ng test` - Run unit tests
+- `ng lint` - Lint the code
+- `ng e2e` - Run end-to-end tests
+
+## Building for Production
+
+To build the project for production:
+
+```bash
+ng build --configuration production
+```
+
+The build artifacts will be stored in the `dist/` directory.
+
+## Environment Configuration
+
+The application includes two environment configurations, I have used reqres.in as the API base URL. You can change the API URL in the environment files:
+
+1. Development (`environment.ts`)
+
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: "https://reqres.in/api",
+};
+```
+
+2. Production (`environment.prod.ts`)
+
+```typescript
+export const environment = {
+  production: true,
+  apiUrl: "https://reqres.in/api",
+};
+```
