@@ -1,0 +1,18 @@
+<nav aria-label="Breadcrumb" class="py-2 px-4">
+  <ol class="flex items-center gap-2 text-sm">
+    @for (item of breadCrumbs(); track item.url; let first = $first; let last =
+    $last) {
+    <li class="flex items-center">
+      @if (!first) {
+      <fa-icon [icon]="icon" class="text-gray-400 mx-1 text-sm"></fa-icon>
+      } @if (last) {
+      <span class="text-gray-600 font-medium">{{ item.label }}</span>
+      } @else {
+      <a [routerLink]="[item.url]" class="text-blue-600 hover:text-blue-800">
+        {{ item.label }}
+      </a>
+      }
+    </li>
+    }
+  </ol>
+</nav>

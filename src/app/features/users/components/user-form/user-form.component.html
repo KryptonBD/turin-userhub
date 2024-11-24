@@ -1,9 +1,4 @@
-<app-header [title]="title()">
-  <button mat-raised-button [routerLink]="['']">
-    <fa-icon [icon]="icons.backIcon"></fa-icon>
-    Back to Users
-  </button>
-</app-header>
+<app-header [title]="title()"> </app-header>
 
 <div class="p-4">
   @if (loading()) {
@@ -29,6 +24,12 @@
           </div>
           }
         </div>
+        @if (avatarPreview()) {
+        <button (click)="deleteAvatar()">
+          <fa-icon [icon]="icons.delete"></fa-icon>
+          Delete
+        </button>
+        }
         <input
           #fileInput
           type="file"

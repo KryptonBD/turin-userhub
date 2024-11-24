@@ -14,8 +14,7 @@ import { LoadingSpinnerComponent } from '@app/shared/components/loading-spinner/
 import { UserService } from '@app/core/services/user.service';
 import { NotificationService } from '@app/core/services/notification.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { faArrowLeft, faUser } from '@fortawesome/free-solid-svg-icons';
-import { User } from '@app/core/models/user.interface';
+import { faTrash, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   standalone: true,
@@ -51,8 +50,8 @@ export class UserFormComponent {
   private selectedFile = signal<File | null>(null);
 
   protected icons = {
-    backIcon: faArrowLeft,
     user: faUser,
+    delete: faTrash,
   };
 
   protected title = computed(() =>
@@ -77,9 +76,9 @@ export class UserFormComponent {
   private loadUser() {
     this.loading.set(true);
     this.userService.getUser(this.userId()!).subscribe({
-      next: (user) => {
-        this.userForm.patchValue(user);
-        this.avatarPreview.set(user.avatar || null);
+      next: (response) => {
+        this.userForm.patchValue(response.data);
+        this.avatarPreview.set(response.data.avatar || null);
         this.loading.set(false);
       },
       error: () => {
@@ -107,8 +106,9 @@ export class UserFormComponent {
 
       if (this.selectedFile()) {
         // TODO/FIXME: The server currently cannot handle file uploads
-        // formData.append('avatar', this.selectedFile() ?? '');
+        // formData.append('avatar', this.selectedFile());
       }
+      formData.append('avatar', '');
 
       formData.append('first_name', userData.first_name ?? '');
       formData.append('last_name', userData.last_name ?? '');
@@ -142,5 +142,10 @@ export class UserFormComponent {
         control?.markAsTouched();
       });
     }
+  }
+
+  protected deleteAvatar(): void {
+    this.avatarPreview.set(null);
+    this.selectedFile.set(null);
   }
 }

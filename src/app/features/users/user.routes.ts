@@ -7,6 +7,9 @@ export const userRoutes: Routes = [
       import('./components/user-list/user-list.component').then(
         (m) => m.UserListComponent
       ),
+    data: {
+      breadcrumb: 'Users',
+    },
   },
   {
     path: 'create',
@@ -14,6 +17,9 @@ export const userRoutes: Routes = [
       import('./components/user-form/user-form.component').then(
         (m) => m.UserFormComponent
       ),
+    data: {
+      breadcrumb: 'Create User',
+    },
   },
   {
     path: ':id',
@@ -21,5 +27,8 @@ export const userRoutes: Routes = [
       import('./components/user-form/user-form.component').then(
         (m) => m.UserFormComponent
       ),
+    data: {
+      breadcrumb: 'Edit User',
+    },
   },
 ];

@@ -35,9 +35,9 @@ export class UserService extends BaseApiService {
    * @param id - The user id
    * @returns observable of User
    */
-  getUser(id: number): Observable<User> {
+  getUser(id: number): Observable<{ data: User }> {
     return this.http
-      .get<User>(`${this.API_URL}/${id}`)
+      .get<{ data: User }>(`${this.API_URL}/${id}`)
       .pipe(catchError(this.handleError));
   }
 
