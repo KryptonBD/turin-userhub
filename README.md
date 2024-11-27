@@ -82,6 +82,8 @@ The application uses a mock API with the following endpoints:
 
 All API requests include a mock Bearer token for authentication demonstration.
 
+To view the API documentation, visit [Reqres api docs](https://reqres.in/api-docs/).
+
 ## Available Scripts
 
 - `ng serve` - Start development server

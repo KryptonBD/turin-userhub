@@ -43,7 +43,7 @@ export class UserService extends BaseApiService {
 
   /**
    * Create a new user
-   * @param user - The user object
+   * @param userForm - The user form data
    * @returns observable of User
    */
   createUser(userForm: FormData): Observable<User> {
@@ -54,7 +54,8 @@ export class UserService extends BaseApiService {
 
   /**
    * Update an existing user
-   * @param user - The user object
+   * @param userId - The user id
+   * @param formData - The user form data
    * @returns observable of User
    * */
   updateUser(userId: number, formData: FormData): Observable<User> {
