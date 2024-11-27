@@ -52,9 +52,12 @@ export class UserListComponent {
   }));
 
   constructor() {
-    effect(() => {
-      this.loadUsers();
-    });
+    effect(
+      () => {
+        this.loadUsers();
+      },
+      { allowSignalWrites: true }
+    );
   }
 
   // Load Users

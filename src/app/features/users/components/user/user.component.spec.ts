@@ -41,7 +41,6 @@ describe('UserComponent', () => {
       '[data-testid="app-user-edit-button"]'
     );
     expect(editButton).toBeTruthy();
-    console.log(editButton.innerHTML);
 
     const editIcon = editButton.querySelector('fa-icon svg');
     expect(editIcon).toBeTruthy();

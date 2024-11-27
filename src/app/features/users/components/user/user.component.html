@@ -19,6 +19,7 @@
       mat-button
       color="primary"
       data-testid="app-user-edit-button"
+      aria-label="Edit user"
       (click)="editUser.emit(user().id)"
     >
       <fa-icon [icon]="icons.edit"></fa-icon>
@@ -28,6 +29,7 @@
       color="warn"
       data-testid="app-user-delete-button"
       (click)="deleteUser.emit(user().id)"
+      aria-label="Delete user"
     >
       <fa-icon [icon]="icons.delete"></fa-icon>
     </button>
