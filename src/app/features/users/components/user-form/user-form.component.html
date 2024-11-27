@@ -5,7 +5,10 @@
   <app-loading-spinner />
   } @else {
   <article class="max-w-2xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 gap-6"
+      data-testid="form-container"
+    >
       <!-- Avatar Section -->
       <section class="flex flex-col items-center gap-4">
         <div
@@ -19,13 +22,16 @@
             class="w-full h-full object-cover"
           />
           } @else {
-          <div class="text-4xl text-gray-400">
+          <div
+            class="text-4xl text-gray-400"
+            data-testid="app-user-form-avatar-picker"
+          >
             <fa-icon [icon]="icons.user"></fa-icon>
           </div>
           }
         </div>
         @if (avatarPreview()) {
-        <button (click)="deleteAvatar()">
+        <button (click)="deleteAvatar()" aria-label="Delete Avatar">
           <fa-icon [icon]="icons.delete"></fa-icon>
           Delete
         </button>
@@ -47,6 +53,8 @@
               matInput
               formControlName="first_name"
               placeholder="First Name"
+              aria-label="First Name"
+              data-testid="app-user-form-first-name"
             />
             @if (userForm.get('first_name')?.errors?.['required'] &&
             userForm.get('first_name')?.touched) {
@@ -59,6 +67,8 @@
               matInput
               formControlName="last_name"
               placeholder="Last Name"
+              aria-label="Last Name"
+              data-testid="app-user-form-last-name"
             />
             @if (userForm.get('last_name')?.errors?.['required'] &&
             userForm.get('last_name')?.touched) {
@@ -67,7 +77,14 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <input matInput formControlName="email" placeholder="Email" />
+            <input
+              matInput
+              formControlName="email"
+              placeholder="Email"
+              aria-label="Email"
+              data-testid="app-user-form-email"
+            />
+
             @if (userForm.get('email')?.errors?.['required'] &&
             userForm.get('email')?.touched) {
             <mat-error>Email is required</mat-error>
@@ -80,8 +97,10 @@
           <div class="flex justify-end gap-2">
             <button
               type="submit"
+              aria-label="Save User"
               mat-raised-button
               color="primary"
+              data-testid="app-user-form-submit"
               [disabled]="userForm.invalid || loading()"
             >
               Save

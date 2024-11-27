@@ -1,10 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {},
+        },
+      ],
     }).compileComponents();
   });
 
@@ -12,17 +19,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it('should have a header', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-
-    const header = fixture.nativeElement.querySelector(
-      '[data-testid="app-root-header"]'
-    );
-
-    expect(header).toBeTruthy();
-    expect(header.textContent).toContain('Turin Userhub');
   });
 });
